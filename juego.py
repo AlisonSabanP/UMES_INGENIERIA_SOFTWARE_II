@@ -54,3 +54,4 @@ elif resultadoH < resultadoM:
     print('Ganador: Programa')
 else:
     print('Empate')
+    print('Ambos obtuvieron los mismos resultados')
