@@ -1,6 +1,7 @@
 import random
+import sys
 
-def compararJugada(jugadaH, jugadaM):
+def comparar_jugada(jugadaH, jugadaM):
     jugadaH = jugadaH.lower()
     jugadaM = jugadaM.lower()
 
@@ -13,45 +14,42 @@ def compararJugada(jugadaH, jugadaM):
     else:
         return -1
 
+def jugar_partida(listaH, listaM):
+    resultadoH = 0
+    resultadoM = 0
+    for i in range(3):
+        resultado = comparar_jugada(listaH[i], listaM[i])
+        if resultado == 1:
+            resultadoH += 1
+        elif resultado == -1:
+            resultadoM += 1
 
-jugadaH = input('Ingrese sus 3 jugadas separadas por espacio (piedra, papel o tijera): ')
-listajugadaH = jugadaH.lower().split()
-opciones_validas = ['piedra', 'papel', 'tijera']
+    print('Punteo:', resultadoH, '-', resultadoM)
+    if resultadoH > resultadoM:
+        return "Humano"
+    elif resultadoH < resultadoM:
+        return "Programa"
+    else:
+        return "Empate"
 
-if len(listajugadaH) != 3:
-    print('Error: Debe ingresar exactamente 3 jugadas.')
-    exit()
+if __name__ == "__main__":
+    if len(sys.argv) != 4:
+        print("Uso: python juego.py [jugada1] [jugada2] [jugada3]")
+        sys.exit(1)
 
-for jugada in listajugadaH:
-    if jugada not in opciones_validas:
-        print(f'Error: {jugada} no es una jugada válida.')
-        print('Las opciones válidas son: piedra, papel o tijera.')
-        exit()
+    listaH = [arg.lower() for arg in sys.argv[1:]]
+    opciones_validas = ['piedra', 'papel', 'tijera']
 
+    for jugada in listaH:
+        if jugada not in opciones_validas:
+            print(f'Error: {jugada} no es una jugada válida.')
+            sys.exit(1)
 
+    opciones = ['piedra', 'papel', 'tijera']
+    listaM = [random.choice(opciones) for _ in range(3)]
 
-opciones = ['piedra', 'papel', 'tijera']
-jugadaM = [random.choice(opciones) for n in range(3)]
+    print('El usuario elige:', ' '.join(listaH))
+    print('El programa elige:', ' '.join(listaM))
 
-print('El usuario elige:', ' '.join(listajugadaH))
-
-print('El programa elige:', ' '.join(jugadaM))
-
-resultadoH = 0
-resultadoM = 0
-for i in range(3):
-    resultado = compararJugada(listajugadaH[i], jugadaM[i])
-    if resultado == 1:
-        resultadoH += 1
-    elif resultado == -1:
-        resultadoM += 1
-
-print('Punteo:', resultadoH, '-', resultadoM)
-
-if resultadoH > resultadoM:
-    print('Ganador: Humano')
-elif resultadoH < resultadoM:
-    print('Ganador: Programa')
-else:
-    print('Empate')
-    print('Ambos obtuvieron los mismos resultados')
+    resultado = jugar_partida(listaH, listaM)
+    print('Ganador:', resultado)
