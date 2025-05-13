@@ -6,11 +6,11 @@ from juego import comparar_jugada
 class TestCompararJugada(unittest.TestCase):
     def test_piedra_vs_piedra(self):
         result = comparar_jugada("piedra", "piedra")
-        self.assertEqual(result, 1)
+        self.assertEqual(result, 0)
     
     def test_piedra_vs_papel(self):
         result = comparar_jugada("piedra", "papel")
-        self.assertEqual(result, -2)
+        self.assertEqual(result, -1)
     
     def test_piedra_vs_tijera(self):
         result = comparar_jugada("piedra", "tijera")
