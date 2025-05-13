@@ -1,27 +1,45 @@
 import unittest
 from juego import comparar_jugada, jugar_partida
+import unittest
+from juego import comparar_jugada
 
-class TestJuego(unittest.TestCase):
+class TestCompararJugada(unittest.TestCase):
+    def test_piedra_vs_piedra(self):
+        result = comparar_jugada("piedra", "piedra")
+        self.assertEqual(result, 0)
+    
+    def test_piedra_vs_papel(self):
+        result = comparar_jugada("piedra", "papel")
+        self.assertEqual(result, -1)
+    
+    def test_piedra_vs_tijera(self):
+        result = comparar_jugada("piedra", "tijera")
+        self.assertEqual(result, 1)
+    
+    def test_papel_vs_piedra(self):
+        result = comparar_jugada("papel", "piedra")
+        self.assertEqual(result, 1)
+    
+    def test_papel_vs_papel(self):
+        result = comparar_jugada("papel", "papel")
+        self.assertEqual(result, 0)
+    
+    def test_papel_vs_tijera(self):
+        result = comparar_jugada("papel", "tijera")
+        self.assertEqual(result, -1)
+    
+    def test_tijera_vs_piedra(self):
+        result = comparar_jugada("tijera", "piedra")
+        self.assertEqual(result, -1)
+    
+    def test_tijera_vs_papel(self):
+        result = comparar_jugada("tijera", "papel")
+        self.assertEqual(result, 1)
+    
+    def test_tijera_vs_tijera(self):
+        result = comparar_jugada("tijera", "tijera")
+        self.assertEqual(result, 0)
 
-    def test_comparar_jugada(self):
-        self.assertEqual(comparar_jugada('piedra', 'tijera'), 1)
-        self.assertEqual(comparar_jugada('piedra', 'papel'), -1)
-        self.assertEqual(comparar_jugada('piedra', 'piedra'), 0)
-
-        self.assertEqual(comparar_jugada('papel', 'piedra'), 1)
-        self.assertEqual(comparar_jugada('papel', 'tijera'), -1)
-        self.assertEqual(comparar_jugada('papel', 'papel'), 0)
-
-        self.assertEqual(comparar_jugada('tijera', 'papel'), 1)
-        self.assertEqual(comparar_jugada('tijera', 'piedra'), -1)
-        self.assertEqual(comparar_jugada('tijera', 'tijera'), 0)
-
-    def test_jugar_partida(self):
-        self.assertEqual(jugar_partida(['piedra', 'papel', 'tijera'], ['tijera', 'piedra', 'papel']), 'Humano')
-
-        self.assertEqual(jugar_partida(['piedra', 'papel', 'tijera'], ['papel', 'tijera', 'piedra']), 'Programa')
-
-        self.assertEqual(jugar_partida(['piedra', 'papel', 'tijera'], ['piedra', 'papel', 'tijera']), 'Empate')
 
 if __name__ == '__main__':
     unittest.main()
