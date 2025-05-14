@@ -5,7 +5,7 @@ from juego import comparar_jugada
 
 class TestCompararJugada(unittest.TestCase):
     def test_piedrapiedra(self):
-        result = comparar_jugada("piedra", "piedra")
+        result = comparar_jugada("cuadrado", "piedra")
         self.assertEqual(result, 0)
     
     def test_piedrapapel(self):
