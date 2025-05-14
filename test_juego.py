@@ -29,7 +29,7 @@ class TestCompararJugada(unittest.TestCase):
         self.assertEqual(result, -1)
     
     def test_tijerapiedra(self):
-        result = comparar_jugada("tijera", "piedra")
+        result = comparar_jugada("tijera", "roca")
         self.assertEqual(result, -1)
     
     def test_tijerapapel(self):

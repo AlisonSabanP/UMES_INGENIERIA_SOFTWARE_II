@@ -7,7 +7,7 @@ def comparar_jugada(jugadaH, jugadaM):
 
     if jugadaH == jugadaM:
         return 0
-    elif (jugadaH == 'piedra' and jugadaM == 'tijera') or \
+    elif (jugadaH == 'roca' and jugadaM == 'tijera') or \
         (jugadaH == 'tijera' and jugadaM == 'papel') or \
         (jugadaH == 'papel' and jugadaM == 'piedra'):
         return 1
